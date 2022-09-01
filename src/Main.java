@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class Main {
@@ -25,17 +27,24 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        ZeroArgument z = () -> System.out.println("Hello world");
-        printZero(z);
-        OneArgument o = (str) -> System.out.println(str);
-        o.myFunc("hej du der");
-        printOne(o, "i am functionel with 1 argument");
-        TwoArgument two = (x,y) -> x+y;
-        int i1 = two.myFunc(5,6);
-        System.out.println("i1" + i1);
-        TwoArgument twomult = (x,y) -> x*y;
-        int i2 = twomult.myFunc(4,5);
-        System.out.println("i2" + i2);
+        Soldier p1 = new Soldier(5, "Hans");
+        List<Soldier> soldiers = new ArrayList<>();
+        soldiers.add(p1);
+        soldiers.add(new Soldier(4, "Jens"));
+        soldiers.add(new Soldier(3, "Jens1"));
+        soldiers.add(new Soldier(3, "Jens2"));
+        //soldiers.forEach(System.out::println);
+        soldiers.forEach(s -> System.out.println(s));
 
+        Predicate<Soldier> isHighRanked = sld -> sld.getRank() > 4;
+
+        Stream<Soldier> high = soldiers.stream().filter(isHighRanked);
+        System.out.println("Is high ranked");
+        high.forEach(s -> System.out.println(s));
+
+        Predicate<Soldier> startsWithJ = s -> s.getName().startsWith("J");
+
+        Stream<Soldier> highAndJ =  soldiers.stream().filter(isHighRanked).filter(startsWithJ);
+        highAndJ.forEach(System.out::println);
     }
 }
