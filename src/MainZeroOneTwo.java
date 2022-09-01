@@ -4,7 +4,7 @@ public class MainZeroOneTwo {
         public void myFunc();
     }
 
-    public static void printZero(Main.ZeroArgument zf) {
+    public static void printZero(ZeroArgument zf) {
         zf.myFunc();
     }
 
@@ -12,7 +12,7 @@ public class MainZeroOneTwo {
         public void myFunc(String str);
     }
 
-    public static void printOne(Main.OneArgument of1, String str) {
+    public static void printOne(OneArgument of1, String str) {
         of1.myFunc(str);
     }
 
@@ -21,15 +21,15 @@ public class MainZeroOneTwo {
     }
 
     public static void main(String[] args) {
-        Main.ZeroArgument z = () -> System.out.println("Hello world");
+        ZeroArgument z = () -> System.out.println("Hello world");
         printZero(z);
-        Main.OneArgument o = (str) -> System.out.println(str);
+        OneArgument o = (str) -> System.out.println(str);
         o.myFunc("hej du der");
         printOne(o, "i am functionel with 1 argument");
-        Main.TwoArgument two = (x, y) -> x+y;
+        TwoArgument two = (x, y) -> x+y;
         int i1 = two.myFunc(5,6);
         System.out.println("i1" + i1);
-        Main.TwoArgument twomult = (x, y) -> x*y;
+        TwoArgument twomult = (x, y) -> x*y;
         int i2 = twomult.myFunc(4,5);
         System.out.println("i2" + i2);
 
